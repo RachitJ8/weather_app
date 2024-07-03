@@ -3,58 +3,93 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body.light {
   background-color: #f0f4f8;
   color: #333;
-}
-
-body.dark {
-  background-color: #333;
-  color: #f0f4f8;
+  overflow-x: hidden;
 }
 
 .App {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 100vh;
-  padding: 20px;
-  transition: background-color 0.3s, color 0.3s;
   width: 100vw;
-  background-color: aqua;
+  background-color: #f0f4f8;
 }
 
 .App-header {
-  margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: inherit;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
 }
 
 .container {
   display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.left-section {
+  width: 50%;
+  display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.right-section {
+  width: 50%;
+  display: flex;
+  flex-direction: column !important;
+  align-items: center;
+}
+
+
+.weather-display {
   align-items: center;
   width: 100%;
   max-width: 600px;
 }
 
+.weather-info,
 .chart {
-  width: 100%;
-  max-width: 600px;
-  margin: 20px 0;
+  flex: 1;
+  margin: 10px;
   background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
 }
 
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+
+  .weather-display {
+    flex-direction: row;
+  }
+
+  .weather-info,
+  .chart {
+    margin: 20px;
+  }
+}
+
 .weather-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
-  margin-bottom: 20px;
 }
 
 .weather-info h2 {
@@ -65,21 +100,4 @@ body.dark {
 .weather-info p {
   margin: 5px 0;
   font-size: 1.2rem;
-}
-
-@media (min-width: 768px) {
-  .container {
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-start;
-  }
-
-  .weather-info {
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .chart {
-    max-width: 400px;
-  }
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './CitySearch.css';
 
 const CitySearch = ({ onCitySelect }) => {
   const [query, setQuery] = useState('');

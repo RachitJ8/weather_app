@@ -18,8 +18,7 @@ const WeatherDisplay = ({ city }) => {
         }
         const data = await response.json();
         setWeather(data);
-        updateTheme(data);
-        setError(null); // Reset error state on successful fetch
+        setError(null);
       } catch (error) {
         setError(error.message);
         console.error('Failed to fetch weather data:', error);
@@ -30,14 +29,6 @@ const WeatherDisplay = ({ city }) => {
       fetchWeather();
     }
   }, [city]);
-
-  const updateTheme = (data) => {
-    const currentTime = new Date((data.dt + data.timezone) * 1000);
-    const sunriseTime = new Date((data.sys.sunrise + data.timezone) * 1000);
-    const sunsetTime = new Date((data.sys.sunset + data.timezone) * 1000);
-    const isDayTime = currentTime >= sunriseTime && currentTime < sunsetTime;
-    document.body.className = isDayTime ? 'light' : 'dark';
-  };
 
   if (!city) {
     return <div className="container">Select a city to view weather</div>;
@@ -82,7 +73,7 @@ const WeatherDisplay = ({ city }) => {
   };
 
   return (
-    <div className="container">
+    <div className="weather-display">
       <div className="weather-info">
         <h2>{weather.name}</h2>
         <p>Temperature: {weather.main.temp}°C</p>
